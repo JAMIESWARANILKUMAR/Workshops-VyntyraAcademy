@@ -25,7 +25,8 @@ body {
     background: radial-gradient(circle at top, #181b2b 0%, #050308 55%);
     color: var(--mist);
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: auto;
+    min-width: 1200px;
 }
 
 .sparkle-bg {
@@ -164,9 +165,9 @@ header.hero-section {
 
 .about-card__logo {
     position: absolute;
-    top: 1rem;
+    top: 1.5rem;
     right: 1.2rem;
-    width: 140px;
+    width: 110px;
     height: 70px;
     border-radius: 0.9rem;
     background: rgba(255, 255, 255, 0.08);
@@ -195,14 +196,14 @@ header.hero-section {
 
 .about-card__content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 780px;
     color: rgba(255, 255, 255, 0.9);
 }
 
 .about-card__content h2 {
     line-height: 1.5;
-    margin-bottom: 1rem;
+    margin-bottom: 1.05rem;
     font-size: clamp(1.8rem, 3vw, 2.4rem);
 }
 
@@ -226,7 +227,7 @@ header.hero-section {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 1.5rem;
-    padding: 1.6rem;
+    padding: 1rem;
     text-align: center;
     box-shadow: var(--shadow);
     position: relative;
@@ -238,7 +239,7 @@ header.hero-section {
     position: absolute;
     inset: 0;
     border-radius: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 3px solid rgba(255, 255, 255, 0.07);
     pointer-events: none;
 }
 
@@ -534,16 +535,16 @@ header.hero-section {
 }
 
 main {
-    padding: 4rem 5vw 6rem;
+    padding: 1rem 8vw 9rem;
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 3.55rem;
 }
 
 .details-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+    gap: 10rem;
     align-items: center;
 }
 
@@ -761,7 +762,7 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: var(--shadow);
     color: #fff;
-    max-width: 200px;
+    max-width: 360px;
     text-align: left;
     animation: cardTilt 10s ease-in-out infinite;
     transform-origin: center;
@@ -778,8 +779,26 @@ main {
     top: 55%;
     right: 0.4rem;
     transform: translateY(-50%) rotateY(-12deg) rotateX(4deg);
-    width: 60%;
+    width: clamp(280px, 62vw, 480px);
     animation-delay: 1s;
+}
+
+.floating-card.tertiary {
+    top: 14%;
+    right: 0.4rem;
+    width: clamp(200px, 32vw, 320px);
+    transform: translateY(0) rotateY(8deg) rotateX(-4deg);
+    animation-delay: 1.5s;
+}
+
+.floating-card__perks {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.95rem;
 }
 
 .floating-card:not(.secondary) {
@@ -986,6 +1005,10 @@ main {
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.08);
     transform: translateY(-2px);
+}
+
+.heisunburg-btn {
+    display: none;
 }
 
 .qr-card-controls {
@@ -1484,13 +1507,31 @@ footer {
     }
 
     .form-header {
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 1rem;
     }
 
     .registration-video {
-        width: 160px;
+        width: 180px;
         right: 0.5rem;
+    }
+
+    .heisunburg-btn {
+        display: flex;
+        position: fixed;
+        bottom: 1.4rem;
+        right: 1.4rem;
+        padding: 0.85rem 1.4rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--ember), var(--ember-dark));
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.08rem;
+        text-decoration: none;
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+        z-index: 70;
     }
 }
 
