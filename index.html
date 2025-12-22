@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration | Vyntyra Academy</title>
+    <link rel="icon" href="vyntyra.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --canvas: #040308;
+    --ember: #ff5f6d;
+    --ember-dark: #d90429;
+    --mist: rgba(255, 255, 255, 0.9);
+    --glass: rgba(255, 255, 255, 0.12);
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    --glow: 0 0 30px rgba(255, 95, 109, 0.35);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    background: radial-gradient(circle at top, #181b2b 0%, #050308 55%);
+    color: var(--mist);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.sparkle-bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 95, 109, 0.4), transparent 60%),
+                radial-gradient(circle at 70% 0%, rgba(232, 113, 73, 0.3), transparent 50%),
+                linear-gradient(135deg, #06030b, #010104 70%);
+    z-index: -2;
+    animation: pulseGlow 10s ease-in-out infinite;
+}
+
+header.hero-section {
+    padding: 2rem 5vw;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.4rem;
+    font-size: 0.9rem;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--ember);
+}
+
+.nav-cta {
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-content {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-logos {
+    margin-top: 2rem;
+}
+
+.hero-logos .container {
+    border-radius: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(25px);
+}
+
+.section-title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2rem;
+}
+
+.tech-marquee {
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.tech-track {
+    display: flex;
+    gap: 1.2rem;
+    padding: 0.9rem 1.5rem;
+    animation: techscroll 22s linear infinite;
+}
+
+.tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.tech-item i {
+    font-size: 1.2rem;
+}
+
+@keyframes techscroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.about-section {
+    margin-top: 2.5rem;
+    perspective: 1500px;
+}
+
+.about-card {
+    position: relative;
+    border-radius: 2rem;
+    padding: 2.4rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.45),
+        inset 0 0 70px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    transform: rotateX(6deg) rotateY(-4deg);
+}
+
+.about-card__logo {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    width: 200px;
+    height: 100px;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    object-fit: contain;
+    padding: 0.6rem;
+}
+
+.about-card__texture {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 4px),
+                      repeating-linear-gradient(60deg, rgba(255, 95, 109, 0.08) 0 2px, transparent 2px 8px);
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+.about-card::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.about-card__content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-card__content h2 {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.about-card__content p {
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.team-section .container {
+    padding: 2rem 0;
+}
+
+.team-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    margin-top: 2rem;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 1.5rem;
+    padding: 1.6rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+}
+
+.member-img-wrapper {
+    border-radius: 1.2rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.member-img img {
+    width: 100%;
+    display: block;
+    height: 260px;
+    object-fit: cover;
+}
+
+.team-social {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.team-social a {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.45rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.team-social a:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 95, 109, 0.2);
+    color: #fff;
+}
+
+.badge {
+    display: inline-flex;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    font-size: 0.7rem;
+}
+
+.hero-copy h1 {
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    line-height: 1.1;
+}
+
+.hero-copy .lede {
+    color: rgba(255, 255, 255, 0.75);
+    margin: 1.2rem 0 1.5rem;
+    line-height: 1.6;
+    max-width: 32rem;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.hero-meta span {
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-3d {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-3d::after {
+    content: '';
+    position: absolute;
+    width: 450px;
+    height: 220px;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15), transparent 60%, rgba(255, 255, 255, 0));
+    filter: blur(12px);
+    animation: pulseHue 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero-3d .reading-duo {
+    position: absolute;
+    display: flex;
+    gap: 1rem;
+    bottom: 0;
+    right: 10%;
+    z-index: 2;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.65));
+}
+
+.reading {
+    width: 72px;
+    height: 120px;
+    position: relative;
+    perspective: 400px;
+    animation: floatBook 5s ease-in-out infinite;
+}
+
+.reading.character .book,
+.reading.character .head,
+.reading.character .body {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reading.character .head {
+    width: 30px;
+    height: 30px;
+    background: #ffe4c4;
+    border-radius: 50%;
+    top: 30px;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.reading.character .body {
+    width: 52px;
+    height: 70px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    top: 50px;
+}
+
+.reading.character.boy .body {
+    background: linear-gradient(180deg, rgba(61, 137, 255, 0.95), rgba(22, 83, 255, 0.65));
+}
+
+.reading.character.girl .body {
+    background: linear-gradient(180deg, rgba(255, 104, 163, 0.95), rgba(208, 12, 62, 0.7));
+}
+
+.reading.character.girl .book {
+    background: linear-gradient(145deg, rgba(255, 205, 86, 0.9), rgba(255, 120, 0, 0.8));
+}
+
+.reading.character.boy {
+    animation-delay: 0s;
+}
+
+.reading.character.girl {
+    animation-delay: 0.8s;
+}
+
+.cube-cage {
+    width: 230px;
+    height: 230px;
+    perspective: 900px;
+}
+
+.cube {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cubeSpin 16s linear infinite;
+}
+
+.cube .face {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 95, 109, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.cube .top { transform: rotateX(90deg) translateZ(80px); }
+.cube .bottom { transform: rotateX(-90deg) translateZ(80px); }
+.cube .left { transform: rotateY(-90deg) translateZ(80px); }
+.cube .right { transform: rotateY(90deg) translateZ(80px); }
+.cube .front { transform: translateZ(80px); }
+.cube .back { transform: rotateY(180deg) translateZ(80px); }
+
+.floating-prism {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    perspective: 800px;
+    animation: prismFloat 12s ease-in-out infinite;
+}
+
+.floating-prism .prism-face {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, rgba(255, 95, 109, 0.6), rgba(217, 4, 41, 0.2));
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+}
+
+.floating-prism .prism-face.alt {
+    mix-blend-mode: screen;
+    transform: rotateX(60deg);
+}
+
+.orbital-ring {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.35);
+    animation: ringPulse 10s infinite;
+}
+
+.orbital-ring span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ember);
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbit 4s linear infinite;
+}
+
+.cube::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 1rem;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    animation: rotateDashed 4s linear infinite;
+}
+
+.reading-duo::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+
+@keyframes floatBook {
+    0%,
+    100% {
+        transform: translate(-50%, 0) rotateX(3deg) rotateY(-6deg);
+    }
+    50% {
+        transform: translate(-50%, -10px) rotateX(6deg) rotateY(8deg);
+    }
+}
+
+@keyframes pulseHue {
+    0%,
+    100% {
+        filter: blur(10px) saturate(1);
+    }
+    50% {
+        filter: blur(16px) saturate(1.4);
+    }
+}
+
+@keyframes rotateDashed {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes orbit {
+    0% {
+        transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
+}
+
+main {
+    padding: 4rem 5vw 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.details-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+.team-section {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+}
+
+.team-header {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.team-header h2 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-header p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.team-marquee {
+    overflow: hidden;
+    border-radius: 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.team-track {
+    display: flex;
+    gap: 1rem;
+    padding-left: 1.2rem;
+    animation: teamScroll 30s linear infinite;
+}
+
+.team-card {
+    width: 220px;
+    min-width: 220px;
+    text-align: center;
+    padding: 1rem 0.9rem 1.2rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    animation: teamCardFloat 6s ease-in-out infinite;
+}
+
+.team-card:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.team-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 1rem;
+    filter: brightness(0.9);
+}
+
+.team-card h3 {
+    font-size: 1rem;
+    letter-spacing: 0.08rem;
+}
+
+.team-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes teamScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes teamCardFloat {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-6px);
+        opacity: 0.95;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.workshop-highlights {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.highlight-card {
+    padding: 1.6rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.02);
+    min-height: 210px;
+}
+
+.highlight-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.08rem;
+}
+
+.highlight-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.highlight-list {
+    list-style: none;
+    margin-top: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.highlight-list li::before {
+    content: '•';
+    color: var(--ember);
+    margin-right: 0.5rem;
+}
+
+.highlight-name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08rem;
+    color: var(--mist);
+}
+
+.details-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 2rem;
+    padding: 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+}
+
+.details-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.details-card p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.details-card ul {
+    list-style: none;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.details-card li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.details-card li i {
+    color: var(--ember);
+}
+
+.details-visual {
+    position: relative;
+    min-height: 420px;
+    background: radial-gradient(circle at top, rgba(255, 95, 109, 0.2), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(232, 113, 73, 0.3), transparent 55%);
+    border-radius: 2.4rem;
+    padding: 2.6rem;
+    perspective: 1800px;
+    transform-style: preserve-3d;
+    isolation: isolate;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.floating-card {
+    position: absolute;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow);
+    color: #fff;
+    max-width: 200px;
+    text-align: left;
+    animation: cardTilt 10s ease-in-out infinite;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.floating-card strong {
+    display: block;
+    margin-top: 0.6rem;
+}
+
+.floating-card.secondary {
+    top: 55%;
+    right: 0.4rem;
+    transform: translateY(-50%) rotateY(-12deg) rotateX(4deg);
+    width: 60%;
+    animation-delay: 1s;
+}
+
+.floating-card:not(.secondary) {
+    top: 0;
+    left: 0;
+    width: 42%;
+    transform: rotateY(8deg) rotateX(-3deg);
+}
+
+.registration-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.form-shell {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2rem;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0.6rem;
+    border-radius: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0.8;
+    filter: blur(40px);
+    z-index: -1;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-header h2 {
+    font-size: 1.9rem;
+}
+
+.pill {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.4rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.pill img {
+    max-height: 48px;
+    max-width: 140px;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    border-radius: 1rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--mist);
+    font-size: 0.95rem;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--mist) 50%),
+                      linear-gradient(135deg, var(--mist) 50%, transparent 50%);
+    background-position: calc(100% - 1rem) calc(50% - 0.15rem), calc(100% - 0.5rem) calc(50% - 0.15rem);
+    background-size: 0.4rem 0.4rem;
+    background-repeat: no-repeat;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(255, 95, 109, 0.25);
+}
+
+.radio-grid {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.radio-option input {
+    accent-color: var(--ember);
+}
+
+.radio-option span {
+    font-size: 0.9rem;
+}
+
+.batch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.6rem;
+}
+
+.batch-option {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--mist);
+    padding: 0.9rem 1rem;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.batch-option.selected,
+.batch-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--ember);
+}
+
+.btn-primary {
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 999px;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    background: linear-gradient(135deg, var(--ember), var(--ember-dark));
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 0.95rem 1.8rem;
+    background: transparent;
+    color: var(--mist);
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.qr-card-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+
+.qr-card-note {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.registration-halo {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.payment-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 60;
+    overflow-y: auto;
+}
+
+.payment-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.payment-modal__content {
+    position: relative;
+    background: rgba(4, 3, 8, 0.95);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    width: min(500px, 95%);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.payment-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 95, 109, 0.25), transparent 45%),
+                radial-gradient(circle at 70% 0%, rgba(232, 113, 73, 0.2), transparent 50%);
+    border-radius: 1.5rem;
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: 0;
+    color: var(--mist);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.payment-modal__qr {
+    width: 100%;
+    border-radius: 1.2rem;
+    margin: 1.2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.1);
+}
+
+.modal-subhead {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 0.4rem;
+}
+
+.payment-modal__details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.payment-modal__details div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.payment-modal__details strong {
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.payment-modal__details span {
+    font-size: 0.95rem;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.modal-field {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.25rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.modal-input {
+    width: 100%;
+    border-radius: 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--mist);
+    font-size: 0.95rem;
+}
+
+.payment-modal__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .payment-modal__body {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .payment-modal__qr {
+        width: 220px;
+        min-width: 220px;
+    }
+    .payment-modal__details {
+        width: 100%;
+    }
+}
+
+.receipt-success {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.receipt-success.visible {
+    display: flex;
+}
+
+.receipt-success ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.payment-modal__status {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0.8rem 0 0;
+}
+
+.payment-modal__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.payment-modal__content h2 {
+    margin-bottom: 0.2rem;
+}
+
+.payment-modal__content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.payment-body {
+    background: radial-gradient(circle at 15% 10%, rgba(255, 95, 109, 0.32), transparent 45%),
+                radial-gradient(circle at 85% 0%, rgba(232, 113, 73, 0.25), transparent 50%),
+                #020205;
+    color: var(--mist);
+}
+
+.payment-page {
+    position: relative;
+    padding: 4rem 5vw 5rem;
+    min-height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-shell {
+    width: min(1120px, 100%);
+    background: rgba(6, 7, 15, 0.9);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+}
+
+.payment-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.info-panel h1 {
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.payment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.meta-pill {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.75rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+}
+
+.profile-card {
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.profile-card strong {
+    font-size: 1.2rem;
+}
+
+.app-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 0.8rem;
+}
+
+.app-icon {
+    border-radius: 1rem;
+    padding: 0.7rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+.app-icon img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+.action-panel {
+    justify-content: space-between;
+}
+
+.qr-card {
+    text-align: center;
+}
+
+.qr-frame {
+    margin: 1rem auto 0;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.qr-frame img {
+    border-radius: 1rem;
+}
+
+.qr-helper {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.transaction-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.transaction-card input {
+    border-radius: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--mist);
+    font-size: 0.95rem;
+}
+
+.transaction-card input:focus {
+    outline: none;
+    border-color: var(--ember);
+    box-shadow: 0 0 0 2px rgba(255, 95, 109, 0.25);
+}
+
+.status-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    padding-top: 0.2rem;
+}
+
+.status-text[data-error='true'] {
+    color: #ff8c8c;
+}
+
+.payment-ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    overflow: hidden;
+}
+
+.ambient-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 35% 20%, rgba(255, 95, 109, 0.3), transparent 60%);
+    filter: blur(70px);
+}
+
+.ambient-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.35;
+}
+
+.payment-3d {
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+}
+
+.payment-3d .cube-cage {
+    transform: scale(0.7);
+}
+
+.registration-video {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    width: 220px;
+    max-width: 50%;
+    border-radius: 30px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.65);
+    mix-blend-mode: screen;
+}
+
+.foreground-gif {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.65));
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+.foreground-gif img {
+    width: 100%;
+    height: auto;
+    border-radius: 1.2rem;
+}
+
+.foreground-gif img {
+    width: 100%;
+    border-radius: 40px;
+    object-fit: cover;
+    mix-blend-mode: screen;
+}
+
+.halo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 95, 109, 0.8), rgba(255, 95, 109, 0));
+    filter: blur(6px);
+    animation: haloPulse 6s ease-in-out infinite;
+}
+
+.pulse {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 95, 109, 0.4);
+    animation: pulseRing 8s ease-in-out infinite;
+}
+
+.cta-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.cta-card {
+    padding: 2rem;
+    border-radius: 1.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+}
+
+.btn-link {
+    color: var(--ember);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer {
+    padding: 2rem 5vw;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+    .hero-meta {
+        justify-content: center;
+    }
+
+    .form-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .registration-video {
+        width: 160px;
+        right: 0.5rem;
+    }
+}
+
+@keyframes cubeSpin {
+    from {
+        transform: rotateX(-25deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(-25deg) rotateY(360deg);
+    }
+}
+
+@keyframes prismFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-15px) rotate(180deg);
+    }
+}
+
+@keyframes haloPulse {
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes pulseGlow {
+    0%,
+    100% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 0.95;
+    }
+}
+
+@keyframes cardTilt {
+    0% {
+        transform: rotateY(6deg) rotateX(-4deg) translateZ(12px);
+    }
+    25% {
+        transform: rotateY(-10deg) rotateX(2deg) translateZ(18px);
+    }
+    50% {
+        transform: rotateY(12deg) rotateX(-2deg) translateZ(8px);
+    }
+    75% {
+        transform: rotateY(-6deg) rotateX(4deg) translateZ(16px);
+    }
+    100% {
+        transform: rotateY(8deg) rotateX(-3deg) translateZ(10px);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="sparkle-bg" aria-hidden="true"></div>
+    <header class="hero-section">
+        <nav class="main-nav">
+            <div class="logo">Vyntyra Academy</div>
+            <div class="nav-links">
+                <a href="#workshop">WORKSHOP</a>
+                <a href="#details">DETAILS</a>
+                <a href="#register">REGISTER</a>
+                <a href="#about">ABOUT</a>
+                <a href="https://chat.whatsapp.com/G25BWxe5lahHHSKEPu4BsU" class="nav-cta" target="_blank" rel="noreferrer noopener">JOIN GROUP</a>
+            </div>
+        </nav>
+        <div class="hero-content">
+            <div class="hero-copy">
+                <p class="eyebrow">4 days Online workshop · limited seats</p>
+                <h1>Immersive Collaboration &amp; Firebase Studio and Console</h1>
+                <p class="lede">Design, build, and launch a resilient Firebase-powered experience over a single weekend. We'll balance workshop labs, live Q&amp;A, and team critiques so you leave with a working prototype.</p>
+                <div class="hero-meta">
+                    <span><i class="fas fa-calendar-day"></i> Dec 23-26, 2025</span>
+                    <span><i class="fas fa-calendar-day"></i> Dec 24-27, 2025</span>
+                    <span><i class="fas fa-user-graduate"></i> Expert mentors</span>
+                    <span><i class="fas fa-users"></i> 40 seats for English Batch</span>
+                    <span><i class="fas fa-users"></i> 40 seats for English + Telugu  Batch</span>
+                </div>
+            </div>
+            <div class="hero-3d" aria-hidden="true">
+                <div class="cube-cage">
+                    <div class="cube">
+                        <span class="face top"></span>
+                        <span class="face bottom"></span>
+                        <span class="face left"></span>
+                        <span class="face right"></span>
+                        <span class="face front"></span>
+                        <span class="face back"></span>
+                    </div>
+                </div>
+                
+                <div class="floating-prism">
+                    <div class=""></div>
+                    <div class="prism-face alt"></div>
+                </div>
+                <div class="orbital-ring">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-logos" aria-label="Technologies our Mentors Mastered in">
+            <div class="container">
+                <h2 class="section-title">Technologies our Mentors Mastered in</h2>
+                <div class="tech-marquee">
+                    <div class="tech-track">
+                        <span class="tech-item"><i class="devicon-html5-plain colored"></i> HTML</span>
+                        <span class="tech-item"><i class="devicon-css3-plain colored"></i> CSS</span>
+                        <span class="tech-item"><i class="devicon-react-original colored"></i> React.js</span>
+                        <span class="tech-item"><i class="devicon-java-plain colored"></i> Java</span>
+                        <span class="tech-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                        <span class="tech-item"><i class="devicon-python-plain colored"></i> Python</span>
+                        <span class="tech-item"><i class="devicon-mysql-plain colored"></i> SQL</span>
+                        <span class="tech-item"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
+                        <span class="tech-item"><i class="devicon-nextjs-original-wordmark"></i> Next.js</span>
+                        <span class="tech-item"><i class="devicon-flutter-plain colored"></i> Flutter</span>
+                        <span class="tech-item"><i class="devicon-kotlin-plain colored"></i> Kotlin</span>
+                        <span class="tech-item"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                        <span class="tech-item"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+                        <span class="tech-item"><i class="devicon-angularjs-plain colored"></i> Angular</span>
+                        <span class="tech-item"><i class="fas fa-brain" style="color: #ff00d4;"></i> AI &amp; ML</span>
+                        <span class="tech-item"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+
+                        <span class="tech-item"><i class="devicon-html5-plain colored"></i> HTML</span>
+                        <span class="tech-item"><i class="devicon-css3-plain colored"></i> CSS</span>
+                        <span class="tech-item"><i class="devicon-react-original colored"></i> React.js</span>
+                        <span class="tech-item"><i class="devicon-java-plain colored"></i> Java</span>
+                        <span class="tech-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                        <span class="tech-item"><i class="devicon-python-plain colored"></i> Python</span>
+                        <span class="tech-item"><i class="devicon-mysql-plain colored"></i> SQL</span>
+                        <span class="tech-item"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
+                        <span class="tech-item"><i class="devicon-nextjs-original-wordmark"></i> Next.js</span>
+                        <span class="tech-item"><i class="devicon-flutter-plain colored"></i> Flutter</span>
+                        <span class="tech-item"><i class="devicon-kotlin-plain colored"></i> Kotlin</span>
+                        <span class="tech-item"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                        <span class="tech-item"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+                        <span class="tech-item"><i class="devicon-angularjs-plain colored"></i> Angular</span>
+                        <span class="tech-item"><i class="fas fa-brain" style="color: #ff00d4;"></i> AI &amp; ML</span>
+                        <span class="tech-item"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="about" class="about-section" aria-label="About Vyntra Academy">
+            <div class="about-card">
+                <img class="about-card__logo" src="vyntyra.png" alt="Vyntra Academy logo" aria-hidden="true">
+                <div class="about-card__texture"></div>
+                <div class="about-card__content">
+                    <p class="eyebrow">ABOUT</p>
+                    <h2>Vyntra Academy is an initiative of Vyntra Consultancy Services, devoted to crafting industry-ready education.</h2>
+                    <p>
+                        We focus on building strong foundations through thoughtfully designed curricula that blend knowledge, practical skills, and modern learning approaches. Our mission is to inspire learners, nurture their potential, and prepare them for academic and professional success.
+                        At Vyntra Academy, education empowers students with confidence, clarity, and the ability to thrive in a constantly evolving world.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section id="workshop" class="details-section">
+            <div class="details-card">
+                <h2>What you will create</h2>
+                <p>We pair you with a mentor to build a Firebase-authenticated collaboration space with realtime analytics. By the end of day two, you'll deploy the experience, wire up CI/CD, and have a launch-ready demo for stakeholders.</p>
+                <ul>
+                    <li><i class="fas fa-mountain"></i> Hands-on labs with mentor walkthroughs</li>
+                    <li><i class="fas fa-rocket"></i> Firebase Studio + Console Automation</li>
+                    <li><i class="fas fa-comments"></i> Minor Projects Designed for Final Year Project Level</li>
+                </ul>
+            </div>
+            <div class="details-visual" aria-hidden="true">
+                <div class="floating-card">
+                    <p>Workflows</p>
+                    <strong>Realtime</strong>
+                </div>
+                <div class="floating-card secondary">
+                    <p><strong>Mentors Available to Solve your Doubt</strong> </p>
+                    <div>
+                    <light> ANU SRI METTA </light>
+                    </div>
+                        <div>
+                            <light> HARSHITHA PATNANA </light>
+                        </div>
+                    <light> NIVEDITHA M </light>
+                </div>
+            </div>
+            <div class="workshop-highlights">
+                <article class="highlight-card">
+                    <p class="eyebrow">Workshop</p>
+                    <h3>Workshop on Google Firebase</h3>
+                    <p>Leverage the integrated environment of Firebase Studio and the management power of the Console to streamline your workflow.</p>
+                    <p class="highlight-meta">
+                        <span>4 days · Virtual workshop + Minor project</span>
+                        <span>Starts 23 December 2025</span>
+                    </p>
+                </article>
+                <article class="highlight-card">
+                    <h3>Material that will be discussed</h3>
+                    <ul class="highlight-list">
+                        <li>Introduction to Firebase Studio &amp; Console</li>
+                        <li>Understand the use of Firebase tools for building applications</li>
+                        <li>Minor hands-on project using Firebase</li>
+                    </ul>
+                </article>
+                <article class="highlight-card">
+                    <h3>Speaker</h3>
+                    <p class="highlight-name">Jami. Eswar Anil Kumar</p>
+                    <p>Founder &amp; Entrepreneur · Mentor · Resource Person</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="team" class="team-section" aria-label="Meet the Vyntyra team">
+            <div class="container">
+                <div class="team-header">
+                    <span class="badge">Our Team</span>
+                    <h2>Meet the Minds Behind Vyntyra Academy</h2>
+                    <p>We are a passionate team of educators, developers, and designers dedicated to revolutionizing online learning.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card fade-up is-visible">
+                        <div class="member-img-wrapper">
+                            <div class="member-img">
+                                <img src="anil.jpg" alt="JAMI ESWAR ANIL KUMAR" loading="lazy" width="300" height="300">
+                            </div>
+                        </div>
+                        <h3>JAMI ESWAR ANIL KUMAR</h3>
+                        <p>Founder &amp; Director</p>
+                        <p>India Mentor, Udemy Instructor &amp; Lead Educator</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/jami-eswar-anil-kumar-113392284" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/JamiAnil2?t=dUyIoKshQPM4NVAX9OYD9w&amp;s=09ass=" title="Twitter" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
+                            <a href="mailto:founder.vyntyraaconsultancyservices@outlook.com"><i class="fas fa-envelope"></i></a>
+                            <a href="https://wa.me/qr/QNAZHSYPK7EJP1" title="WhatsApp" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/urstruelyjamianil/profile"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/itsmejamianil"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card fade-up is-visible">
+                        <div class="member-img-wrapper">
+                            <div class="member-img">
+                                <img src="anu.jpeg" alt="ANU SRI METTA" loading="lazy" width="300" height="300">
+                            </div>
+                        </div>
+                        <h3>ANU SRI METTA</h3>
+                        <p>Co-Founder</p>
+                        <p>R&D Manager, Director of Administration</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/anu-sri-metta-293679294" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:anusri.vyntyraconsultancyservices@outlook.com" title="Send Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card fade-up is-visible">
+                        <div class="member-img-wrapper">
+                            <div class="member-img">
+                                <img src="harshitha.jpg" alt="HARSHITHA PATNANA" loading="lazy" width="300" height="300">
+                            </div>
+                        </div>
+                        <h3>HARSHITHA PATNANA</h3>
+                        <p>Co-Founder</p>
+                        <p>Relations Manager, Administration Associate</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/harshitha-patnana-94bb07297" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:harshitha.vyntyraconsultancyservices@outlook.com" title="Email" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card fade-up is-visible">
+                        <div class="member-img-wrapper">
+                            <div class="member-img">
+                                <img src="niveditha.jpeg" alt="NIVEDITHA M" loading="lazy" width="300" height="300">
+                            </div>
+                        </div>
+                        <h3>NIVEDITHA M</h3>
+                        <p>Co-Founder</p>
+                        <p>Web Developer, Vyntyra Academy Curriculum Associate</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/niveditha8277" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:niveditha.vyntyraconsultancyservices@outlook.com" title="Email" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-card fade-up is-visible">
+                        <div class="member-img-wrapper">
+                            <div class="member-img">
+                                <img src="abhishek.jpg" alt="SIVA KUMAR P" loading="lazy" width="300" height="300">
+                            </div>
+                        </div>
+                        <h3>Abhishek Pandey</h3>
+                        <p>Co-Founder</p>
+                        <p>Backend Developer, Technical Trainee, Vyntyra Academy Curriculum Associate</p>
+                        <div class="team-social">
+                            <a href="https://www.linkedin.com/in/abhishekpandey101" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:abhishek.vyntyraconsultancyservices@outlook.com" title="Email" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="registration-section">
+            <div class="form-shell">
+                    <div class="form-header">
+                        <div>
+                            <p class="eyebrow">Register now</p>
+                            <h2>Secure your spot</h2>
+                        </div>
+                        <div class="pill badge-pill" aria-label="Vyntyra badge">
+                            <img src="vyntyra.png" alt="Vyntyra badge">
+                        </div>
+                    </div>
+                <form class="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full name</label>
+                            <input type="text" id="name" name="name" placeholder="Ananya Rao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 99999 12345" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <div class="radio-grid role-grid">
+                                <label class="radio-option">
+                                    <input type="radio" name="role" value="diploma">
+                                    <span>Diploma Student</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="role" value="engineering">
+                                    <span>Engineering Student</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="role" value="bca">
+                                    <span>BCA Student</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row batch-row hidden" id="batch-row">
+                        <div class="form-group">
+                            <label>Preferred batch</label>
+                            <div class="batch-grid">
+                                <button type="button" class="batch-option" data-batch="batch1" data-label="Batch 1 · English" data-track="Batch 1 - Complete English Mode">Batch 1 · English</button>
+                                <button type="button" class="batch-option" data-batch="batch2" data-label="Batch 2 · English + Telugu" data-track="Batch 2 - English &amp; Telugu Combined">Batch 2 · English + Telugu</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Experience level</label>
+                            <div class="radio-grid">
+                                <label class="radio-option">
+                                    <input type="radio" name="level" value="beginner" checked>
+                                    <span>Beginner</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="level" value="intermediate">
+                                    <span>Intermediate</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="level" value="advanced">
+                                    <span>Advanced</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label for="message">Tell us briefly what you hope to build</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Share your goals, team idea, or dataset."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Secure seat</button>
+                </form>
+            </div>
+            <div class="registration-halo" aria-hidden="true">
+                <video class="registration-video" autoplay muted loop playsinline>
+                    <source src="video.gif" type="video/gif">
+                
+                </video>
+                <div class="halo"></div>
+                <div class="pulse"></div>
+                <div class="foreground-gif" aria-hidden="true">
+                    <img src="video2.gif" alt="animated badge">
+                    <img src="video -gif.gif" alt="animated badge">
+                    <img src="video3.gif" alt="animated badge">
+                </div>
+            </div>
+        </section>
+
+        <div class="payment-modal" id="paymentModal" aria-hidden="true">
+            <div class="payment-modal__backdrop" aria-hidden="true"></div>
+            <div class="payment-modal__content" role="dialog" aria-modal="true" aria-label="Secure slot payment">
+                <button type="button" id="modalClose" class="modal-close" aria-label="Close payment dialog">×</button>
+                <h2>Secure slot payment · ₹50</h2>
+                <p class="modal-subhead">Scan the QR, provide the transaction ID, then share or download the receipt.</p>
+                <div class="payment-modal__body">
+                    <img src="Payment.png" alt="UPI payment QR" class="payment-modal__qr" loading="lazy">
+                    <div class="payment-modal__details">
+                        <div>
+                            <strong>Name</strong>
+                            <span id="modalName">Candidate</span>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <span id="modalEmail">email@example.com</span>
+                        </div>
+                        <div>
+                            <strong>Phone</strong>
+                            <span id="modalPhone">+91</span>
+                        </div>
+                        <div>
+                            <strong>Batch</strong>
+                            <span id="modalBatch">Selected batch</span>
+                        </div>
+                        <div>
+                            <strong>Registration ID</strong>
+                            <span id="modalRegId">VYNT-XXXXXX</span>
+                        </div>
+                        <div>
+                            <strong>Payment ID</strong>
+                            <span id="modalPaymentId">—</span>
+                        </div>
+                    </div>
+                </div>
+                <label class="modal-field" for="modalTransactionId">Transaction ID</label>
+                <input type="text" id="modalTransactionId" class="modal-input" placeholder="Example: 13081ABC123" autocomplete="off">
+                <p class="payment-modal__status" id="modalStatus">Enter your transaction ID to continue.</p>
+                <div class="payment-modal__actions">
+                    <button type="button" id="modalShare" class="btn-primary">Share via WhatsApp</button>
+                    <button type="button" class="btn-secondary" id="modalDownloadReceipt">Download receipt</button>
+                    <button type="button" class="btn-secondary" id="modalCancel">Close</button>
+                </div>
+                <div class="receipt-success" id="receiptSuccess" aria-live="polite">
+                    <p>Receipt ready with the details below.</p>
+                    <ul>
+                        <li><strong>Amount:</strong> ₹50</li>
+                        <li><strong>Registration ID:</strong> <span id="successRegId">—</span></li>
+                        <li><strong>Payment ID:</strong> <span id="successPaymentId">—</span></li>
+                        <li><strong>Transaction ID:</strong> <span id="successTxnId">—</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <section id="details" class="cta-section">
+            <div class="cta-card">
+                <h3>Need help before registering?</h3>
+                <p>Chat with our team about prerequisites, group invoices, or custom cohorts. You can also call us at <strong>+91 6301588867</strong>.</p>
+                <a href="#contact" class="btn-link">Talk with Slot admissions</a>
+            </div>
+            <div class="cta-card secondary">
+                <h3>Workshop inclusion</h3>
+                <p>Mentorship, Resources, support & E-Certificate for every participant.</p>
+                <a class="btn-link" href="#workshop">Read More About Workshop</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vyntyra Academy · Designed by <strong>Niveditha M</strong> | Powered by Vyntra Consultancy Services</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const form = document.querySelector('.registration-form');
+        const roleRadios = document.querySelectorAll('input[name="role"]');
+        const batchRow = document.querySelector('#batch-row');
+        const batchButtons = document.querySelectorAll('.batch-option');
+        const paymentModal = document.getElementById('paymentModal');
+        const modalName = document.getElementById('modalName');
+        const modalEmail = document.getElementById('modalEmail');
+        const modalPhone = document.getElementById('modalPhone');
+        const modalBatch = document.getElementById('modalBatch');
+        const modalRegId = document.getElementById('modalRegId');
+        const modalPaymentId = document.getElementById('modalPaymentId');
+        const modalTransactionId = document.getElementById('modalTransactionId');
+        const modalStatus = document.getElementById('modalStatus');
+        const modalShare = document.getElementById('modalShare');
+        const modalCancel = document.getElementById('modalCancel');
+        const modalClose = document.getElementById('modalClose');
+        const modalDownloadReceipt = document.getElementById('modalDownloadReceipt');
+        const receiptSuccess = document.getElementById('receiptSuccess');
+        const successRegId = document.getElementById('successRegId');
+        const successPaymentId = document.getElementById('successPaymentId');
+        const successTxnId = document.getElementById('successTxnId');
+
+        let selectedBatch = '';
+        let selectedBatchLabel = '';
+        let latestRegistrant = null;
+        const whatsappNumber = '916301588867';
+        const amountValue = 50;
+        let currentPaymentId = '';
+        let cachedLogoDataUrl = null;
+
+        const setBatchSelection = (button) => {
+            batchButtons.forEach(b => b.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedBatch = button.dataset.batch || '';
+            selectedBatchLabel = button.dataset.label || button.textContent.trim();
+        };
+
+        if (batchButtons.length) {
+            setBatchSelection(batchButtons[0]);
+        }
+
+        batchButtons.forEach((button) => {
+            button.addEventListener('click', () => setBatchSelection(button));
+        });
+
+        roleRadios.forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    batchRow?.classList.remove('hidden');
+                }
+            });
+        });
+
+        const openModal = () => {
+            paymentModal?.classList.add('visible');
+            paymentModal?.setAttribute('aria-hidden', 'false');
+            modalTransactionId.value = '';
+            modalStatus.textContent = 'Enter your transaction ID to continue.';
+        };
+
+        const closeModal = () => {
+            modalStatus.textContent = 'Enter your transaction ID to continue.';
+            paymentModal?.classList.remove('visible');
+            paymentModal?.setAttribute('aria-hidden', 'true');
+        };
+
+        const generatePaymentId = () => `PAY-${Math.random().toString(36).slice(2, 8).toUpperCase()}-${Date.now().toString().slice(-4)}`;
+
+        const populateModal = (registrant) => {
+            currentPaymentId = generatePaymentId();
+            modalName.textContent = registrant.name;
+            modalEmail.textContent = registrant.email;
+            modalPhone.textContent = registrant.phone;
+            modalBatch.textContent = registrant.batchLabel;
+            modalRegId.textContent = registrant.registrationId;
+            modalPaymentId.textContent = currentPaymentId;
+            successRegId.textContent = registrant.registrationId;
+            successPaymentId.textContent = currentPaymentId;
+            successTxnId.textContent = '—';
+            receiptSuccess?.classList.remove('visible');
+            latestRegistrant = registrant;
+            openModal();
+        };
+
+        if (form) {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const getValue = (selector) => {
+                    const element = form.querySelector(selector);
+                    return element ? element.value.trim() : '';
+                };
+
+                const name = getValue('#name');
+                const email = getValue('#email');
+                const phone = getValue('#phone');
+                const message = getValue('#message');
+                const roleElement = form.querySelector('input[name="role"]:checked');
+                const levelElement = form.querySelector('input[name="level"]:checked');
+                const role = roleElement ? roleElement.value : 'diploma';
+                const level = levelElement ? levelElement.value : 'beginner';
+
+                if (!name || !email || !phone) {
+                    alert('Please complete your name, email, and phone before proceeding.');
+                    return;
+                }
+
+                if (!selectedBatch) {
+                    alert('Select a batch to continue.');
+                    return;
+                }
+
+                const registrationId = `VYNT-${Date.now().toString().slice(-6)}`;
+                const registrant = {
+                    registrationId,
+                    name,
+                    email,
+                    phone,
+                    role,
+                    level,
+                    message,
+                    batch: selectedBatch,
+                    batchLabel: selectedBatchLabel || 'Selected batch',
+                    registeredAt: new Date().toISOString()
+                };
+
+                localStorage.setItem('vyntyraUser', JSON.stringify(registrant));
+                populateModal(registrant);
+            });
+        }
+
+        const fetchLogoDataUrl = async () => {
+            if (cachedLogoDataUrl) {
+                return cachedLogoDataUrl;
+            }
+            try {
+                const response = await fetch('vyntyra.jpg');
+                const blob = await response.blob();
+                const reader = new FileReader();
+                const dataUrl = await new Promise((resolve, reject) => {
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+                cachedLogoDataUrl = dataUrl;
+                return dataUrl;
+            } catch (error) {
+                console.warn('Unable to load logo', error);
+                return null;
+            }
+        };
+
+        const createReceiptPdf = async (txnId) => {
+            if (!window.jspdf || !latestRegistrant) {
+                modalStatus.textContent = 'Unable to load the receipt generator.';
+                return;
+            }
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+            const logoDataUrl = await fetchLogoDataUrl();
+            if (logoDataUrl) {
+                doc.addImage(logoDataUrl, 'JPEG', 40, 30, 140, 40);
+            }
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(24);
+            doc.setTextColor('#1a2030');
+            doc.text('Payment Receipt', 40, 90);
+            doc.setFontSize(10);
+            doc.setTextColor('#5c5c5c');
+            doc.setFont('helvetica', 'normal');
+            doc.text(`Receipt No: ${currentPaymentId}`, 40, 110);
+            doc.text(`Issue Date: ${new Date().toLocaleDateString('en-IN')}`, 40, 126);
+            doc.text(`Transaction Ref: ${txnId}`, 40, 142);
+
+            doc.setDrawColor('#d0d0d0');
+            doc.setLineWidth(0.5);
+            doc.line(30, 160, 580, 160);
+
+            doc.setFontSize(12);
+            doc.setTextColor('#1e1e1e');
+            doc.text('Issued to', 40, 182);
+            doc.setFontSize(10);
+            doc.text(latestRegistrant.name, 40, 200);
+            doc.text(latestRegistrant.email, 40, 216);
+            doc.text(`${latestRegistrant.phone}`, 40, 232);
+            doc.text(`Batch: ${latestRegistrant.batchLabel}`, 40, 248);
+
+            doc.text('Payment details', 320, 182);
+            doc.text(`Payment ID: ${currentPaymentId}`, 320, 200);
+            doc.text(`Transaction ID: ${txnId}`, 320, 216);
+            doc.text(`Amount Paid: ₹ ${amountValue.toFixed(2)}`, 320, 232);
+            doc.text(`Mode: UPI QR`, 320, 248);
+
+            const tableTop = 280;
+            doc.setFontSize(11);
+            doc.setTextColor('#333');
+            doc.text('Description', 40, tableTop);
+            doc.text('Qty', 330, tableTop);
+            doc.text('Unit Price', 390, tableTop);
+            doc.text('Amount', 470, tableTop);
+            doc.line(30, tableTop + 4, 580, tableTop + 4);
+
+            const lineHeight = 22;
+            doc.setFontSize(10);
+            doc.text('Vyntyra Firebase Workshop', 40, tableTop + lineHeight);
+            doc.text('1', 330, tableTop + lineHeight);
+            doc.text(`₹ ${amountValue.toFixed(2)}`, 390, tableTop + lineHeight);
+            doc.text(`₹ ${amountValue.toFixed(2)}`, 470, tableTop + lineHeight);
+
+            const totalY = tableTop + lineHeight * 2 + 20;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.text('Total', 390, totalY);
+            doc.text(`₹ ${amountValue.toFixed(2)}`, 470, totalY);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor('#1f8b1f');
+            doc.text('Amount Paid', 390, totalY + 18);
+            doc.text(`₹ ${amountValue.toFixed(2)}`, 470, totalY + 18);
+
+            doc.setDrawColor('#ff5f6d');
+            doc.setLineWidth(0.8);
+            doc.line(30, 540, 580, 540);
+            doc.setFontSize(9);
+            doc.setTextColor('#666');
+            doc.text('Payment confirmed · Slot reserved on payment clearance.', 40, 558);
+            doc.text(`Issuer: Vyntra Consultancy Services · ${new Date().toLocaleString('en-IN')}`, 40, 573);
+
+            doc.save(`Vyntyra-Payment-${currentPaymentId}.pdf`);
+        };
+
+        const shareDetails = () => {
+            const txnId = modalTransactionId.value.trim();
+            if (!txnId) {
+                modalStatus.textContent = 'Add your transaction ID before sharing.';
+                return;
+            }
+            if (!latestRegistrant) {
+                modalStatus.textContent = 'Registrant data missing. Please submit the form again.';
+                return;
+            }
+            const message = `Registrant: ${latestRegistrant.name}\nEmail: ${latestRegistrant.email}\nPhone: ${latestRegistrant.phone}\nBatch: ${latestRegistrant.batchLabel}\nRole: ${latestRegistrant.role}\nLevel: ${latestRegistrant.level}\nRegistration ID: ${latestRegistrant.registrationId}\nTransaction ID: ${txnId}\nAmount: ₹50`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            modalStatus.textContent = 'WhatsApp opened with your payment summary.';
+            successTxnId.textContent = txnId;
+            receiptSuccess?.classList.add('visible');
+        };
+
+        const downloadReceipt = async () => {
+            const txnId = modalTransactionId.value.trim();
+            if (!txnId) {
+                modalStatus.textContent = 'Add your transaction ID before downloading.';
+                return;
+            }
+            if (!latestRegistrant) {
+                modalStatus.textContent = 'Registrant data missing. Please submit the form again.';
+                return;
+            }
+            modalStatus.textContent = 'Generating receipt PDF...';
+            await createReceiptPdf(txnId);
+            successTxnId.textContent = txnId;
+            receiptSuccess?.classList.add('visible');
+            modalStatus.textContent = 'Receipt downloaded. WhatsApp button shares the same details.';
+        };
+
+        modalShare?.addEventListener('click', shareDetails);
+        modalDownloadReceipt?.addEventListener('click', downloadReceipt);
+        modalCancel?.addEventListener('click', closeModal);
+        modalClose?.addEventListener('click', closeModal);
+        paymentModal?.addEventListener('click', (event) => {
+            if (event.target === paymentModal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
