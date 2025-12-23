@@ -45,7 +45,7 @@ body {
 .marquee-banner p {
     white-space: nowrap;
     display: inline-block;
-    animation: marqueeScroll 12s linear infinite, textGlow 4.5s ease-in-out infinite;
+    animation: marqueeScroll 30s linear infinite, textGlow 4.5s ease-in-out infinite;
     letter-spacing: 0.04rem;
     text-shadow: 0 0 16px rgba(255, 255, 255, 0.45);
 }
@@ -124,7 +124,7 @@ body {
 .popup-marquee span {
     display: inline-block;
     white-space: nowrap;
-    animation: marqueeScroll 15s linear infinite, textGlow 4.5s ease-in-out infinite;
+    animation: marqueeScroll 25s linear infinite, textGlow 4.5s ease-in-out infinite;
     letter-spacing: 0.04rem;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
 }
@@ -1728,3 +1728,4 @@ footer {
         transform: rotateY(8deg) rotateX(-3deg) translateZ(10px);
     }
 }
+
