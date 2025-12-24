@@ -21,7 +21,7 @@
                 <h3>Switch to desktop mode</h3>
                 <p>We suggest you to use desktop mode for the best experience and enable desktop view before registering.</p>
                 <div class="popup-marquee" aria-hidden="true">
-                    <span>✨ Registrations for Firebase Studio &amp; Firebase Console 4-Days Workshop. English batch Closes Today @ 6:00 PM IST / English + Telugu batch Closes Tomorrow  @ 6:00 PM IST 🚀 Enroll Now! 🎓</span>
+                    <span>✨ Registrations for Firebase Studio &amp; Firebase Console 4-Days Workshop. Closes Today @ 6:00 PM IST 🚀 Enroll Now! 🎓</span>
                 </div>
             </div>
         </div>
@@ -438,6 +438,18 @@
         </section>
     </main>
 
+    <div class="floating-poster-placeholder" aria-label="Floating poster preview placeholder">
+        <div class="poster-card">
+            <div class="poster-preview" aria-hidden="true">
+                <img src="Poster.jpeg" alt="Firebase Studio poster mockup">
+            </div>
+            <div class="poster-card__text poster-card__text--center">
+                <p id="posterTimer" class="poster-timer" aria-live="polite">Live in —</p>
+            </div>
+            <button type="button" class="btn-secondary poster-card__cta" id="posterSessionBtn" disabled data-session-url="https://meet.google.com/fym-eprs-kzp">Join the session</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 Vyntyra Academy · Designed by <strong>Niveditha M</strong> | Powered by Vyntra Consultancy Services</p>
     </footer>
@@ -732,7 +744,66 @@
                 hideDesktopHint();
             }
         });
+
+        const posterTimer = document.getElementById('posterTimer');
+        const posterSessionBtn = document.getElementById('posterSessionBtn');
+        const posterSessionUrl = posterSessionBtn?.dataset?.sessionUrl || 'https://meet.google.com/fym-eprs-kzp';
+
+        const getIstTargetMs = () => {
+            const now = new Date();
+            return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 13, 10, 0);
+        };
+
+        const pad = (value) => String(value).padStart(2, '0');
+        const formatCountdownText = (ms) => {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+        };
+
+        let posterCountdownInterval = null;
+
+        const stopPosterCountdown = () => {
+            if (posterCountdownInterval) {
+                clearInterval(posterCountdownInterval);
+                posterCountdownInterval = null;
+            }
+        };
+
+        const activatePosterButton = () => {
+            if (!posterSessionBtn) return;
+            posterSessionBtn.disabled = false;
+            posterSessionBtn.classList.remove('btn-secondary');
+            posterSessionBtn.classList.add('btn-primary');
+        };
+
+        const updatePosterCountdown = () => {
+            if (!posterTimer || !posterSessionBtn) return;
+            const remainingMs = getIstTargetMs() - Date.now();
+            if (remainingMs <= 0) {
+                posterTimer.textContent = 'Live now · join the session at the link below.';
+                activatePosterButton();
+                stopPosterCountdown();
+                return;
+            }
+            const countdownText = formatCountdownText(remainingMs);
+            posterTimer.textContent = `Live in ${countdownText} (IST)`;
+        };
+
+        posterSessionBtn?.addEventListener('click', (event) => {
+            if (posterSessionBtn.disabled) {
+                event.preventDefault();
+                return;
+            }
+            window.open(posterSessionUrl, '_blank');
+        });
+
+        updatePosterCountdown();
+        if (posterTimer && posterSessionBtn && posterSessionBtn.disabled) {
+            posterCountdownInterval = setInterval(updatePosterCountdown, 1000);
+        }
     </script>
 </body>
 </html>
-
