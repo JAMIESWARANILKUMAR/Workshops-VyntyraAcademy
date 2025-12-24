@@ -352,7 +352,7 @@
                             <textarea id="message" name="message" rows="4" placeholder="Share your goals, team idea, or dataset."></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn-primary">Secure seat</button>
+                    <button type="submit" class="btn-primary" id="secureSeatBtn">Secure seat</button>
                 </form>
             </div>
             <div class="registration-halo" aria-hidden="true">
@@ -447,6 +447,7 @@
                 <p id="posterTimer" class="poster-timer" aria-live="polite">Live in —</p>
             </div>
             <button type="button" class="btn-secondary poster-card__cta" id="posterSessionBtn" disabled data-session-url="https://meet.google.com/fym-eprs-kzp">Join the session</button>
+            <p id="posterSessionGreeting" class="poster-session__greeting" aria-live="polite"></p>
         </div>
     </div>
 
@@ -747,7 +748,57 @@
 
         const posterTimer = document.getElementById('posterTimer');
         const posterSessionBtn = document.getElementById('posterSessionBtn');
+        const secureSeatBtn = document.getElementById('secureSeatBtn');
+        const posterSessionGreeting = document.getElementById('posterSessionGreeting');
         const posterSessionUrl = posterSessionBtn?.dataset?.sessionUrl || 'https://meet.google.com/fym-eprs-kzp';
+        const accessCodeRegistry = {
+            'VYNT-959656': 'MORRI ADITHYA',
+            'VYNT-905701': 'SAVALAPURAM GUNAKARA RAO',
+            'VYNT-256888': 'DEEKSHITH DM',
+            'VYNT-081505': 'RAM RAO',
+            'VYNT-968188': 'SILLA KUMARASWAMY',
+            'ADMIN2': 'NIVEDITHA M',
+            'ADMIN3': 'ANU SRI METTA',
+            'ADMIN4': 'HARSHITHA PATNANA'
+        };
+        const normalizeAccessCode = (value) => {
+            return value ? value.toString().replace(/\s+/g, '').toUpperCase() : '';
+        };
+        const normalizedAccessLookup = {};
+        Object.entries(accessCodeRegistry).forEach(([code, name]) => {
+            const normalized = normalizeAccessCode(code);
+            if (normalized) {
+                normalizedAccessLookup[normalized] = name;
+            }
+        });
+        const getRegistrantName = (value) => normalizedAccessLookup[normalizeAccessCode(value)] || '';
+        const disableSecureSeatButton = () => {
+            if (!secureSeatBtn) return;
+            secureSeatBtn.disabled = true;
+            secureSeatBtn.setAttribute('aria-disabled', 'true');
+            secureSeatBtn.classList.add('btn-disabled');
+        };
+        const showSessionGreeting = (name) => {
+            if (!posterSessionGreeting) return;
+            posterSessionGreeting.textContent = name ? `Welcome back, ${name}! Redirecting you to the meet shortly.` : '';
+        };
+        const handlePosterSessionClick = (event) => {
+            if (posterSessionBtn?.disabled) {
+                event.preventDefault();
+                return;
+            }
+            const accessCode = window.prompt('Enter your Access Code (Registration ID) to join the session.');
+            if (!accessCode) {
+                return;
+            }
+            const registrantName = getRegistrantName(accessCode);
+            if (!registrantName) {
+                alert('Access code not recognized. Double-check your Registration ID before joining.');
+                return;
+            }
+            showSessionGreeting(registrantName);
+            window.open(posterSessionUrl, '_blank');
+        };
 
         const getIstTargetMs = () => {
             const now = new Date();
@@ -777,6 +828,7 @@
             posterSessionBtn.disabled = false;
             posterSessionBtn.classList.remove('btn-secondary');
             posterSessionBtn.classList.add('btn-primary');
+            disableSecureSeatButton();
         };
 
         const updatePosterCountdown = () => {
@@ -792,13 +844,7 @@
             posterTimer.textContent = `Live in ${countdownText} (IST)`;
         };
 
-        posterSessionBtn?.addEventListener('click', (event) => {
-            if (posterSessionBtn.disabled) {
-                event.preventDefault();
-                return;
-            }
-            window.open(posterSessionUrl, '_blank');
-        });
+        posterSessionBtn?.addEventListener('click', handlePosterSessionClick);
 
         updatePosterCountdown();
         if (posterTimer && posterSessionBtn && posterSessionBtn.disabled) {
