@@ -1133,6 +1133,14 @@ main {
     transform: translateY(-2px);
 }
 
+.btn-primary:disabled,
+.btn-disabled {
+    opacity: 0.65;
+    filter: grayscale(0.35);
+    cursor: not-allowed;
+    transform: none;
+}
+
 .qr-card-controls {
     display: flex;
     flex-wrap: wrap;
@@ -1725,6 +1733,16 @@ main {
     opacity: 0.65;
     filter: grayscale(0.3);
     cursor: not-allowed;
+}
+
+.poster-session__greeting {
+    min-height: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(188, 244, 255, 0.95);
+    text-align: center;
+    letter-spacing: 0.04rem;
+    margin-top: 0.35rem;
+    transition: color 0.3s ease;
 }
 
 @media (max-width: 900px) {
