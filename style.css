@@ -45,7 +45,7 @@ body {
 .marquee-banner p {
     white-space: nowrap;
     display: inline-block;
-    animation: marqueeScroll 30s linear infinite, textGlow 4.5s ease-in-out infinite;
+    animation: marqueeScroll 35s linear infinite, textGlow 4.5s ease-in-out infinite;
     letter-spacing: 0.04rem;
     text-shadow: 0 0 16px rgba(255, 255, 255, 0.45);
 }
@@ -124,7 +124,7 @@ body {
 .popup-marquee span {
     display: inline-block;
     white-space: nowrap;
-    animation: marqueeScroll 25s linear infinite, textGlow 4.5s ease-in-out infinite;
+    animation: marqueeScroll 30s linear infinite, textGlow 4.5s ease-in-out infinite;
     letter-spacing: 0.04rem;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
 }
@@ -1634,6 +1634,105 @@ main {
     font-weight: 600;
 }
 
+.floating-poster-placeholder {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: min(280px, 85vw);
+    padding: 1.2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(2, 2, 2, 0.65));
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(24px);
+    z-index: 45;
+    animation: posterFloat 5s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+}
+
+.floating-poster-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 95, 109, 0.5);
+    pointer-events: none;
+}
+
+.poster-card {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    text-align: left;
+    z-index: 1;
+}
+
+.poster-preview img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.poster-preview {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+.poster-card__text h4 {
+    font-size: 1.05rem;
+    letter-spacing: 0.06rem;
+}
+
+.poster-timer {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.08rem;
+}
+
+.poster-card__text p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.4;
+}
+
+.poster-card__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+}
+
+.poster-card__text--center {
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.poster-card__cta {
+    width: 100%;
+    justify-content: center;
+}
+
+.poster-card__cta[disabled] {
+    opacity: 0.65;
+    filter: grayscale(0.3);
+    cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+    .floating-poster-placeholder {
+        display: none;
+    }
+}
+
 footer {
     padding: 2rem 5vw;
     text-align: center;
@@ -1711,6 +1810,16 @@ footer {
     }
 }
 
+@keyframes posterFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
 @keyframes cardTilt {
     0% {
         transform: rotateY(6deg) rotateX(-4deg) translateZ(12px);
@@ -1728,4 +1837,3 @@ footer {
         transform: rotateY(8deg) rotateX(-3deg) translateZ(10px);
     }
 }
-
