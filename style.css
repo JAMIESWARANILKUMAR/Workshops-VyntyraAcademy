@@ -1642,6 +1642,312 @@ main {
     font-weight: 600;
 }
 
+.workshop-ended-dialog {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255, 95, 109, 0.12), rgba(4, 5, 8, 0.95));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 60;
+    animation: workshopBackdropPulse 6s ease-in-out infinite;
+    overflow: hidden;
+    backdrop-filter: blur(28px);
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.workshop-ended-dialog.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.workshop-ended-dialog::before {
+    content: '';
+    position: absolute;
+    inset: -25%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 95, 109, 0.5), transparent 45%),
+                radial-gradient(circle at 80% 0%, rgba(232, 113, 73, 0.35), transparent 40%);
+    opacity: 0.6;
+    filter: blur(40px);
+    animation: workshopBackdropHalo 12s ease-in-out infinite;
+    z-index: -1;
+}
+
+.workshop-ended-dialog__content {
+    background: linear-gradient(135deg, rgba(6, 7, 16, 0.88), rgba(16, 9, 29, 0.95));
+    border-radius: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2.5rem 2rem;
+    max-width: 360px;
+    width: min(90vw, 360px);
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    border-image: linear-gradient(135deg, rgba(255, 95, 109, 0.85), rgba(232, 113, 73, 0.6)) 1;
+    animation: workshopCardGlare 7s ease-in-out infinite;
+    overflow: hidden;
+    padding: 2.5rem 2.4rem;
+}
+
+.workshop-ended-dialog__logo {
+    display: block;
+    width: 70px;
+    margin: 0 auto 1.25rem;
+}
+
+.workshop-ended-dialog__content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.workshop-ended-dialog__content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.workshop-ended-dialog__close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.65rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.workshop-ended-dialog__close:hover {
+    color: var(--ember);
+}
+
+/* E-Certificate Modal */
+.ecert-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 5, 8, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 70;
+    backdrop-filter: blur(20px);
+    overflow-y: auto;
+}
+
+.ecert-modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ecert-modal__content {
+    background: linear-gradient(135deg, rgba(6, 7, 16, 0.95), rgba(16, 9, 29, 0.98));
+    border-radius: 1.8rem;
+    border: 1px solid rgba(255, 95, 109, 0.25);
+    padding: 2.5rem;
+    max-width: 550px;
+    width: min(95vw, 550px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 0 60px rgba(255, 95, 109, 0.08);
+    position: relative;
+    animation: ecertModalSlide 0.4s ease-out;
+}
+
+.ecert-modal__content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--mist);
+    letter-spacing: 0.1rem;
+}
+
+.ecert-modal__content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--ember);
+}
+
+.ecert-modal__close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.ecert-modal__close:hover {
+    color: var(--ember);
+}
+
+.ecert-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ecert-modal__form label {
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.ecert-modal__form input {
+    padding: 0.9rem 1rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--mist);
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.ecert-modal__form input:focus {
+    outline: none;
+    border-color: var(--ember);
+    background: rgba(255, 95, 109, 0.08);
+}
+
+.ecert-modal__form button {
+    padding: 0.85rem 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.ecert-modal__status {
+    font-size: 0.9rem;
+    color: rgba(255, 95, 109, 0.9);
+    text-align: center;
+    min-height: 1.2rem;
+}
+
+.ecert-modal__result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ecert-modal__certificate {
+    border-radius: 0.8rem;
+    border: 2px solid rgba(255, 95, 109, 0.5);
+    box-shadow: 0 15px 45px rgba(255, 95, 109, 0.2);
+}
+
+.ecert-modal__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ecert-modal__actions .btn-primary {
+    flex: 1;
+    min-width: 150px;
+}
+
+.ecert-modal__actions .btn-link {
+    padding: 0.85rem 1.5rem;
+    display: inline-block;
+    border: 1px solid var(--ember);
+    border-radius: 999px;
+    transition: all 0.3s ease;
+}
+
+.ecert-modal__actions .btn-link:hover {
+    background: rgba(255, 95, 109, 0.15);
+}
+
+.ecert-modal__verify {
+    background: rgba(255, 95, 109, 0.08);
+    border: 1px solid rgba(255, 95, 109, 0.3);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.ecert-modal__verify p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0.4rem 0;
+}
+
+.ecert-modal__verify strong {
+    color: var(--ember);
+}
+
+@keyframes ecertModalSlide {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes workshopBackdropPulse {
+    0% {
+        transform: scale(1);
+        background: radial-gradient(circle at top, rgba(255, 95, 109, 0.12), rgba(4, 5, 8, 0.9));
+    }
+    50% {
+        transform: scale(1.025);
+        background: radial-gradient(circle at 10% 10%, rgba(255, 95, 109, 0.18), rgba(2, 2, 6, 0.96));
+    }
+    100% {
+        transform: scale(1);
+        background: radial-gradient(circle at top, rgba(255, 95, 109, 0.12), rgba(4, 5, 8, 0.9));
+    }
+}
+
+@keyframes workshopBackdropHalo {
+    0% {
+        filter: blur(40px);
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        filter: blur(50px);
+        transform: translate3d(6%, -3%, 0) scale(1.05);
+    }
+    100% {
+        filter: blur(40px);
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes workshopCardGlare {
+    0% {
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 35px 80px rgba(255, 95, 109, 0.35);
+        transform: translateY(-4px);
+    }
+    100% {
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        transform: translateY(0);
+    }
+}
+
 .floating-poster-placeholder {
     position: fixed;
     bottom: 1.5rem;
